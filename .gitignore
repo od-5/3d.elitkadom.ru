@@ -1,0 +1,7 @@
+/apps/ticket/migrations
+/core/migrations
+/cms/db.sqlite3
+.idea/
+/cms/settings/local_settings.py
+/apps/landing/migrations
+*.pyc

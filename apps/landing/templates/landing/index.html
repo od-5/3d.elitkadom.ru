@@ -1,0 +1,650 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="{{ KEYS|default:'' }}">
+	<meta name="description" content="{{ DESC|default:'' }}">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+{#	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
+{#	<title>Брендирование лифтов и реклама в новостройках</title>#}
+	<title>{{ TITLE|default:'Заголовок сайта' }}</title>
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/all.css' %}" />
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/slick.css' %}" />
+	<link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/jquery.fancybox.css' %}" />
+	<script src="{% static 'landing/js/jquery-1.9.1.min.js' %}"></script>
+	<script src="{% static 'landing/js/slick.min.js' %}"></script>
+	<script src="{% static 'landing/js/jquery.validate.js' %}"></script>
+	<script src="{% static 'landing/js/jquery.fancybox.js' %}"></script>
+	<script src="{% static 'landing/js/jquery.maskedinput.js' %}"></script>
+	<script src="{% static 'landing/js/jquery.scrollTo.js' %}"></script>
+	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/html5.js' %}"></script><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
+	<script src="{% static 'landing/js/all.js' %}"></script>
+  {{ TOP_JS|safe|default:'' }}
+</head>
+<body>	
+	<div id="city-popup" class="city-popup">
+		<div class="city-top">
+			<div class="city-title-mob">Выберите Ваш город:</div>
+			<div class="city-search">
+				<form action="send.php" method="post">
+					<fieldset>
+						<input name="" type="text" class="input" placeholder="Найти город...">
+						<button class="loupe"></button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="city-main">
+			<div class="city-title">Выберите Ваш город:</div>
+			<div class="city-hidden">
+				<ul class="city-list">
+        {% for city in city_list %}
+					<li><a href="{{ city.get_absolute_url }}">{{ city.name|default:'Не указано' }}</a></li>
+        {% endfor %}
+{#					<li><a href="">Абакан</a></li>#}
+{#					<li><a href="">Азов</a></li>#}
+{#					<li><a href="">Армавир</a></li>#}
+{#					<li><a href="">Астрахань</a></li>#}
+{#					<li><a href="">Ачинск</a></li>#}
+{#					<li><a href="">Барнаул</a></li>#}
+{#					<li><a href="">Бахчисарай</a></li>#}
+{#					<li><a href="">Белгород</a></li>#}
+{#					<li><a href="">Белогорск</a></li>#}
+{#					<li><a href="">Каменск-Уральский</a></li>#}
+{#					<li><a href="">Камчатка</a></li>#}
+{#					<li><a href="">Киров</a></li>#}
+{#					<li><a href="">Кирс</a></li>#}
+{#					<li><a href="">Кунгур</a></li>#}
+{#					<li><a href="">Курган</a></li>#}
+{#					<li><a href="">Люберцы</a></li>#}
+{#					<li><a href="">Магнитогорск</a></li>#}
+{#					<li><a href="">Миасс</a></li>#}
+{#					<li><a href="">Рязань</a></li>#}
+{#					<li><a href="">Самара</a></li>#}
+{#					<li><a href="">Саранск</a></li>#}
+{#					<li><a href="">Саратов</a></li>#}
+{#					<li><a href="">Севастополь</a></li>#}
+{#					<li><a href="">Симферополь</a></li>#}
+{#					<li><a href="">Смоленск</a></li>#}
+{#					<li><a href="">Соликамск</a></li>#}
+{#					<li><a href="">Сочи</a></li>#}
+{#					<li><a href="">Абакан</a></li>#}
+{#					<li><a href="">Азов</a></li>#}
+{#					<li><a href="">Армавир</a></li>#}
+{#					<li><a href="">Астрахань</a></li>#}
+{#					<li><a href="">Ачинск</a></li>#}
+{#					<li><a href="">Барнаул</a></li>#}
+{#					<li><a href="">Бахчисарай</a></li>#}
+{#					<li><a href="">Белгород</a></li>#}
+{#					<li><a href="">Белогорск</a></li>#}
+{#					<li><a href="">Каменск-Уральский</a></li>#}
+{#					<li><a href="">Камчатка</a></li>#}
+{#					<li><a href="">Киров</a></li>#}
+{#					<li><a href="">Кирс</a></li>#}
+{#					<li><a href="">Кунгур</a></li>#}
+{#					<li><a href="">Курган</a></li>#}
+{#					<li><a href="">Люберцы</a></li>#}
+{#					<li><a href="">Магнитогорск</a></li>#}
+{#					<li><a href="">Миасс</a></li>#}
+{#					<li><a href="">Рязань</a></li>#}
+{#					<li><a href="">Самара</a></li>#}
+{#					<li><a href="">Саранск</a></li>#}
+{#					<li><a href="">Саратов</a></li>#}
+{#					<li><a href="">Севастополь</a></li>#}
+{#					<li><a href="">Симферополь</a></li>#}
+{#					<li><a href="">Смоленск</a></li>#}
+{#					<li><a href="">Соликамск</a></li>#}
+{#				<li><a href="">Сочи</a></li>#}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper">
+		<div class="header-fixed">
+			<div class="holder">
+				<div class="header-nav">
+					<ul>
+						<li><a href="#info" class="scroll">Почему мы</a></li>
+						<li><a href="#servises" class="scroll">Услуги</a></li>
+						<li><a href="#house" class="scroll">Адреса</a></li>
+						<li><a href="#product" class="scroll">Цены</a></li>
+						<li><a href="#coop" class="scroll">Партнерам</a></li>
+						<li><a href="#contacts" class="scroll">Контакты</a></li>
+					</ul>
+				</div>
+				<a href="tel:{{ PHONE|default:'8 800 775-18-45' }}" class="header-phone">{{ PHONE|default:'8 800 775-18-45' }}</a>
+			</div>
+		</div>
+		<header class="header">	
+			<div class="holder">	
+				<div class="header-top">
+					<div class="header-logo">
+						<img src="{% static 'landing/images/logo.png' %}" alt="">
+					</div>
+					<div class="header-nav">
+						<ul>
+							<li><a href="#info" class="scroll">Почему мы</a></li>
+							<li><a href="#servises" class="scroll">Услуги</a></li>
+							<li><a href="#house" class="scroll">Адреса</a></li>
+							<li><a href="#product" class="scroll">Цены</a></li>
+							<li><a href="#coop" class="scroll">Партнерам</a></li>
+							<li><a href="#contacts" class="scroll">Контакты</a></li>
+						</ul>
+					</div>
+					<div class="header-city-link">
+						<a href="#city-popup" class="city-link fancybox"><span>Выбрать <br>город</span></a>
+					</div>
+					<a href="" class="header-button">Войти</a>
+					<a href="tel:{{ PHONE|default:'8 800 775-18-45' }}" class="header-phone">{{ PHONE|default:'8 800 775-18-45' }}</a>
+				</div>
+				<div class="header-main">
+					<div class="header-title">
+						<h1><span class="yellow">3D брендирование лифтов</span><br> и реклама в новостройках</h1>
+					</div>
+					<div class="header-text">Разместим информацию о Вас в новых домах на время ремонтов (от 6 месяцев до года)! 
+					Реклама в обжитых домах, но недавно построенных домах (до 15-ти лет) со 100% фотоотчетом и онлайн контролем! </div>
+					<div class="form-line">
+						<form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+							<fieldset>
+								<input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
+								<input name="phone" type="text" class="input" placeholder="Ваш телефон или email">
+								<input type="hidden" name="theme" value="Заявка на консультацию">
+								<button class="submit">Оставить заявку</button>
+							</fieldset>
+						</form>
+					</div>
+					<ul class="header-list">
+						<li>50 оформленных лифтов</li>
+						<li><a href="#client" class="scroll">500 успешно выполненных заказов</a></li>
+						<li>1000 собственных рекламных конструкций</li>
+						<li>Работа “Под ключ”</li>
+						<li><a href="#action" class="scroll">Дизайн-макет в подарок!</a></li>
+					</ul>
+					<div class="header-main-link"><a href="#gallery" class="scroll">Смотреть примеры работ</a></div>
+					<div class="tablet">
+						<div class="tablet-hidden">
+              {{ main_video.code|safe|default:'' }}
+{#							<iframe src="https://www.youtube.com/embed/kKhmnEmdjPo" frameborder="0" allowfullscreen></iframe>#}
+						</div>
+						<a href="" class="header-play"><img src="{% static 'landing/images/play.png' %}" alt=""></a>
+					</div>
+				</div>	
+			</div>
+		</header>
+		<section class="info" id="info">
+			<div class="holder">
+				<div class="info-title">
+					<h2><span class="h2-light">Почему </span>заказывают рекламу у нас </h2>
+				</div>
+				<article class="info-text">
+					<p>"Нравится качество исполнения заказов!"</p>
+					<p>"Доступные цены.."</p>
+					<p>"Отличная идея с 3D-оформлением лифта полностью - и защита и красиво."</p>
+					<p>"Вдумчивый подход к исполнению заказов - удачная реализация идей в макетах"</p>
+					<p>"Приятно работать с людьми, которые с душой относятся к делу.."</p>
+					<p>"Опыт и работа "под ключ" экономят уйму времени"</p>
+				</article>
+				<div class="info-video">
+        {% for video in video_list %}
+          <div class="info-video-item">
+						<div class="info-video-iframe">
+							{{ video.code|safe|default:'' }}
+						</div>
+						<div class="info-video-text">{{ video.title|default:'' }}</div>
+					</div>
+        {% endfor %}
+{#					<div class="info-video-item">#}
+{#						<div class="info-video-iframe">#}
+{#							<iframe src="https://www.youtube.com/embed/-cMN-A7TYQE" frameborder="0" allowfullscreen></iframe>#}
+{#						</div>#}
+{#						<div class="info-video-text">О компании Арт-лифт от <br>программы "Твоя среда"</div>#}
+{#					</div>#}
+{#					<div class="info-video-item">#}
+{#						<div class="info-video-iframe">#}
+{#							<iframe src="https://www.youtube.com/embed/kth-tJcKfCg" frameborder="0" allowfullscreen></iframe>#}
+{#						</div>#}
+{#						<div class="info-video-text">Арт-лифт тюнингует <br>лифты - реклама в ТРК</div>#}
+{#					</div>#}
+{#					<div class="info-video-item">#}
+{#						<div class="info-video-iframe">#}
+{#							<iframe src="https://www.youtube.com/embed/vRuZ7luRxPI" frameborder="0" allowfullscreen></iframe>#}
+{#						</div>#}
+{#						<div class="info-video-text">Деловое ТВ об <br>Арт-лифт 2013 год</div>#}
+{#					</div>#}
+{#					<div class="info-video-item">#}
+{#						<div class="info-video-iframe">#}
+{#							<iframe src="https://www.youtube.com/embed/z4Al7wyACqs" frameborder="0" allowfullscreen></iframe>#}
+{#						</div>#}
+{#						<div class="info-video-text">Несколько слов о нас <br>от руководителя компании</div>#}
+{#					</div>#}
+				</div>
+				<div class="info-text-bottom">
+					<p>С 2009 года компания выполнила более 500 заказов на размещение рекламы в лифтах от стендов до полного оформления.
+					Рациональное отношение к делу позволило создать новый эффективный вид рекламы - 3D Брендирование лифта в новых домах,
+					ведь на ремонты тратится немало средств, при этом бригады строителей "убивают" лифт при перевозке стройматериалов.
+					Поэтому, защищая лифт, Вы и доносите информацию о себе и вызываете симпатию жителей, спасая их имущество!</p>
+				</div>
+			</div>
+		</section>
+		<section class="servises" id="servises">
+			<div class="holder">
+				<h2>Наши услуги</h2>
+				<div class="serv-block">
+					<div class="serv-table">
+						<div class="serv-item">
+							<div class="serv-img"><img src="{% static 'landing/images/media/s1.jpg' %}" alt=""></div>
+							<div class="serv-content">
+								<div class="serv-name">3D Брендирование лифта</div>
+								<div class="serv-text">Оформляя красиво лифт, вы 100% привлечете к себе внимание всех жителей дома. А по статистике
+								люди тратят на благоустройство от 30 до 70% стоимости квартиры.</div>
+								<div class="serv-price">от 20 000 руб.</div>
+								<div class="serv-button">
+									<a href="#popup" class="button fancybox button-data" data-button="Узнать подробнее" data-title="Узнать подробнее о защитном брендировании лифта">Узнать подробнее</a>
+								</div>
+							</div>
+						</div>
+						<div class="serv-item">
+							<div class="serv-img"><img src="{% static 'landing/images/media/s2.jpg' %}" alt=""></div>
+							<div class="serv-content">
+								<div class="serv-name">Реклама в лифтах</div>
+								<div class="serv-text">В нашей программе подборка от старых до наиболее благоустроенных и только что сданных домов. 
+								Подберем на любой вкус!</div>
+								<div class="serv-price">от 10 000 руб. <br><a href="#product" class="serv-price-min scroll">смотреть цены</a></div>
+								<div class="serv-button">
+									<a href="#popup" class="button fancybox button-data" data-button="Узнать подробнее" data-title="Узнать подробнее о рекламе в лифтах">Узнать подробнее</a>
+								</div>
+							</div>
+						</div>
+						<div class="serv-item">
+							<div class="serv-img"><img src="{% static 'landing/images/media/s3.jpg' %}" alt=""></div>
+							<div class="serv-content">
+								<div class="serv-name">Адресное распространение, реклама на домофонах и досках объявлений</div>
+								<div class="serv-text">Использование единой программы online контроля через мобильное приложение по всем городам
+								России позволило увеличить эффективность расклейки и распространения более чем в 5 раз.</div>
+								<div class="serv-price">от 10 000 руб.</div>
+								<div class="serv-button">
+									<a href="#popup" class="button fancybox button-data" data-button="Узнать подробнее" data-title="Узнать подробнее об адресном распространении">Узнать подробнее</a>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="action" id="action">
+			<div class="action-gift"></div>
+			<div class="action-printer"></div>
+			<div class="holder">
+				<div class="action-text">Звоните нам или 
+				<a href="#popup" class="fancybox button-data" data-button="Оставить заявку" data-title="Оставьте заявку на консультацию">оставьте заявку</a> 
+				на консультацию и принимайте участие в акции</div>
+				<div class="action-title">Дизайн-макет вашей рекламы <span>в подарок к заказу!</span></div>
+				<div class="action-phone">Звоните по номеру <span>8 800 775-18-45</span></div>
+				<div class="action-note">Изображения и информация<br> предоставляется клиентом</div>
+			</div>
+		</section>
+		<section class="house" id="house">
+			<div class="house-top">
+				<div class="holder">
+					<h2><span class="yellow">Дома</span> <br>под рекламу</h2>
+				</div>
+				<div class="house-hand"></div>
+			</div>
+			<div class="house-map">
+				<a href="{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker1 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker1.png' %}" alt=""></a>
+				<a href="{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker2 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker2.png' %}" alt=""></a>
+				<a href="{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker3 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker3.png' %}" alt=""></a>
+			</div>
+			<div class="house-bottom">
+				<div class="holder">
+					<div class="house-bottom-title">Не нашли нужные?</div>
+					<div class="house-bottom-text">Напишите, что вас интересует и мы предложим вам варианты</div>
+					<div class="form-line">
+						<form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+							<fieldset>
+								<input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
+								<input name="phone" type="text" class="input" placeholder="Ваш телефон или email">
+								<input type="hidden" name="theme" value="Заявка на консультацию">
+								<button class="submit">Оставить заявку</button>
+							</fieldset>
+						</form>
+					</div>	
+				</div>
+			</div>
+		</section>
+		<section class="product" id="product">
+			<div class="holder">
+				<h2>Стоимость</h2>
+				<div class="product-block">
+					<div class="product-item">
+						<div class="product-img">
+							<div class="product-slider">
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/1.jpg' %}"><img src="{% static 'landing/images/media/product/1.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/2.jpg' %}"><img src="{% static 'landing/images/media/product/2.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/3.jpg' %}"><img src="{% static 'landing/images/media/product/3.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/4.jpg' %}"><img src="{% static 'landing/images/media/product/4.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/5.jpg' %}"><img src="{% static 'landing/images/media/product/5.jpg' %}"></div>
+							</div>
+						</div>
+						<div class="product-content">
+							<div class="product-name">Брендирование лифтов</div>
+							<ul class="product-info">
+								<li>
+									<div class="product-info-left">1 лифт</div>
+									<div class="product-info-right">от 10 000 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">10 лифтов</div>
+									<div class="product-info-right">от 95 000 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">50 лифтов</div>
+									<div class="product-info-right">от 400 000 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">100 лифтов</div>
+									<div class="product-info-right">от 900 000 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">от 100 лифтов</div>
+									<div class="product-info-right">по договоренности</div>
+								</li>	
+							</ul>
+							<div class="product-button">
+								<a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение брендирования лифтов">Получить предложение</a>
+							</div>
+						</div>
+					</div>
+					<div class="product-item">
+						<div class="product-img">
+							<div class="product-slider">
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/11.jpg' %}"><img src="{% static 'landing/images/media/product/11.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/12.jpg' %}"><img src="{% static 'landing/images/media/product/12.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/13.jpg' %}"><img src="{% static 'landing/images/media/product/13.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/14.jpg' %}"><img src="{% static 'landing/images/media/product/14.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/15.jpg' %}"><img src="{% static 'landing/images/media/product/15.jpg' %}"></div>
+							</div>
+						</div>
+						<div class="product-content">
+							<div class="product-name">Реклама на<br> стендах </div>
+							<ul class="product-info">
+								<li>	
+									<div class="product-info-left">А3</div>
+									<div class="product-info-right">от 240 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">А4</div>
+									<div class="product-info-right">от 120 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">А5</div>
+									<div class="product-info-right">от 60 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">А6</div>
+									<div class="product-info-right">от 30 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">Полоса</div>
+									<div class="product-info-right">от 60 руб</div>
+								</li>	
+							</ul>
+							<div class="product-button">
+								<a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение рекламы на стендах">Получить предложение</a>
+							</div>
+						</div>
+					</div>
+					<div class="product-item">
+						<div class="product-img">
+							<div class="product-slider">
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/21.jpg' %}"><img src="{% static 'landing/images/media/product/21.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/22.jpg' %}"><img src="{% static 'landing/images/media/product/22.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/23.jpg' %}"><img src="{% static 'landing/images/media/product/23.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/24.jpg' %}"><img src="{% static 'landing/images/media/product/24.jpg' %}"></div>
+								<div data-thumb="{% static 'landing/images/media/product/thumbs/25.jpg' %}"><img src="{% static 'landing/images/media/product/25.jpg' %}"></div>
+							</div>
+						</div>
+						<div class="product-content">
+							<div class="product-name">Адресное распространение</div>
+							<ul class="product-info">
+								<li>	
+									<div class="product-info-left">А3</div>
+									<div class="product-info-right">от 240 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">А4</div>
+									<div class="product-info-right">от 120 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">А5</div>
+									<div class="product-info-right">от 60 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">А6</div>
+									<div class="product-info-right">от 30 руб.</div>
+								</li>
+								<li>
+									<div class="product-info-left">Полоса</div>
+									<div class="product-info-right">от 60 руб</div>
+								</li>	
+							</ul>
+							<div class="product-button">
+								<a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение адресного распространения">Получить предложение</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="gallery" id="gallery">
+			<div class="holder">
+				<h2>Наша Галерея</h2>
+				<div class="gallery-block">
+					<a href="{% static 'landing/images/media/gallery/1b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/1.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/2b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/2.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/3b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/3.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/4b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/4.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/5b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/5.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/6b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/6.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/7b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/7.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/8b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/8.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/9b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/9.jpg' %}" alt=""></a>
+					<a href="{% static 'landing/images/media/gallery/10b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/10.jpg' %}" alt=""></a>
+				</div>
+			</div>
+		</section>
+		<section class="client" id="client">
+			<div class="holder">
+				<h2>Наши клиенты</h2>
+				<div class="client-block">
+					<div class="client-item"><img src="{% static 'landing/images/media/client/1.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/2.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/3.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/4.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/5.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/6.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/7.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/8.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/9.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/10.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/11.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/12.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/13.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/14.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/15.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/16.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/17.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/18.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/19.png' %}" alt=""></div>
+					<div class="client-item"><img src="{% static 'landing/images/media/client/20.png' %}" alt=""></div>
+				</div>
+				<div class="button-holder">
+					<a href="#popup" class="button fancybox button-data" data-button="Оставить заявку" data-title="Оставьте заявку на рекламу">Оставить заявку на рекламу</a>
+				</div>
+			</div>
+		</section>
+		<section class="review">
+			<div class="holder">
+				<h2 class="title">Отзывы </h2>
+				<div class="review-slider">
+					<div class="review-slide">
+						<div class="review-block">
+							<div class="review-photo"><img src="{% static 'landing/images/media/review/r1.jpg' %}" alt=""></div>
+							<div class="review-author">О. В. Меркушев</div>
+							<div class="review-status">Исполнительный директор ООО «Рада»</div>
+							<div class="review-text">ООО «РАДА » выражает благодарность рекламному агентству «Арт-лифт» и особенно Чигаревой
+							Наталье, за продуктивную и качественную работу, своевременность и оперативность исполнения заказа, умение 
+							находить индивидуальный подход к клиентам , чуткое и доброжелательное отношение к ним. Надеемся на дальнейшее 
+							плодотворное сотрудничество с Вашей компанией. «11» июля 2016г.</div>
+						</div>
+					</div>	
+					<div class="review-slide">
+						<div class="review-block">
+							<div class="review-photo"><img src="{% static 'landing/images/media/review/r2.jpg' %}" alt=""></div>
+							<div class="review-author">Р. С. Фомин</div>
+							<div class="review-status">Генеральный директор ООО «Ярмарка Волгоград»</div>
+							<div class="review-text">ООО «Ярмарка Волгоград» выражает благодарность рекламному агентству «Арт-лифт» за 
+							продуктивную и качественную работу, своевременность, оперативность исполнения заказа и чуткое отношение к 
+							клиентам. Надеемся на дальнейшее плодотворное сотрудничество с Вашей компанией.<br><br><br><br></div>
+						</div>
+					</div>
+				</div>
+				<div class="cert-slider">
+					<div class="cert-block">
+						<div class="cert-img">
+							<a href="{% static 'landing/images/media/review/1b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/1.jpg' %}" alt=""></a>
+						</div>
+						<div class="review-author">Ротари клуб Волгограда</div>
+						<div class="review-status"></div>
+					</div>
+					<div class="cert-block">
+						<div class="cert-img">
+							<a href="{% static 'landing/images/media/review/2b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/2.jpg' %}" alt=""></a>
+						</div>
+						<div class="review-author">Р. С. Фомин</div>
+						<div class="review-status">Генеральный директор ООО «Ярмарка Волгоград»</div>	
+					</div>
+					<div class="cert-block">
+						<div class="cert-img">
+							<a href="{% static 'landing/images/media/review/3b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/3.jpg' %}" alt=""></a>
+						</div>
+						<div class="review-author">Тарасова Татьяна</div>
+						<div class="review-status">Руководитель компании «Линия успеха»</div>	
+					</div>
+					<div class="cert-block">
+						<div class="cert-img">
+							<a href="{% static 'landing/images/media/review/4b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/4.jpg' %}" alt=""></a>
+						</div>
+						<div class="review-author">Зузанов Д. Н.</div>
+						<div class="review-status">Директор филиала ООО «ПЭК Поволжье»</div>	
+					</div>
+					<div class="cert-block">
+						<div class="cert-img">
+							<a href="{% static 'landing/images/media/review/5b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/5.jpg' %}" alt=""></a>
+						</div>
+						<div class="review-author">Самойлова Жанна</div>
+						<div class="review-status">Руководитель отдела маркетинга ООО «МАН»</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="coop" id="coop">
+			<div class="holder">
+				<h2>Приглашаем к<br> сотрудничеству</h2>
+				<div class="coop-holder">
+					<div class="coop-block">
+						<div class="coop-item coop1">
+							<div class="coop-text">Хотите открыть</div>
+							<div class="coop-title">свой рекламный бизнес?</div>
+							<div class="coop-button">
+								<a href="#popup" class="button fancybox button-data" data-button="Оставить заявку" data-title="Оставьте заявку на консультацию о франшизе Арт-лифт">Узнать о франшизе</a>
+							</div>
+						</div>
+						<div class="coop-item coop2">
+							<div class="coop-text">Вы представитель застройщика?</div>
+							<div class="coop-title">Мы защитим ваши лифты бесплатно</div>
+							<div class="coop-button">
+								<a href="#popup" class="button fancybox button-data" data-button="Узнать условия" data-title="Узнайте, как мы можем помочь вам защитить лифты бесплатно">Узнать условия</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="map" id="contacts">
+			<div class="holder">
+				<div class="map-block">
+					<div class="map-title">Наши контакты</div>
+					<div class="map-text">
+          {{ CONTACT|linebreaksbr|default:'не указаны' }}
+          </div>
+				</div>
+			</div>
+			<div class="map-holder">
+				<div id="map"></div>
+				<script>
+				  function initMap() {
+					
+					var myLatLng = {lat: 48.695408, lng: 44.504568};
+					var myLatLng_pos = {lat: 48.695408, lng: 44.506376};
+
+					// Create a map object and specify the DOM element for display.
+					var map = new google.maps.Map(document.getElementById('map'), {
+					  center: myLatLng,
+					  scrollwheel: false,
+					  zoom: 16
+					});
+
+					// Create a marker and set its position.
+					var marker = new google.maps.Marker({
+					  map: map,
+					  position: myLatLng_pos,
+					  title: 'г. Волгоград, ул. Пугачевская 7Г оф. 52'
+					});
+					
+				  }
+
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYwgiF49X4el9HEX86YLocvHahqznvPzw&callback=initMap" async defer></script>
+			</div>
+		</section>
+		<footer class="footer">
+			<div class="holder">
+				<div class="footer-copy">
+					Все права защищены &copy; 
+					<script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script>, ООО РА "Арт-лифт" <br>
+					<a href="#hidden-block" class="fancybox">Политика конфиденциальности</a>
+				</div>
+				<a href="http://neurondg.com/" target="_blank" class="footer-studio">
+					<span>Дизайн сайта</span>
+					<img src="{% static 'landing/images/studio.png' %}" alt="">
+				</a>
+				<div id="hidden-block">
+					<h2>Политика конфиденциальности</h2>
+					<p>Мы не собираем личную информацию о Вас, когда Вы заходите на наш сайт.
+					Вы можете анонимно просматривать сайт. Тем не менее, Ваш браузер все же автоматически сообщает нам тип компьютера и операционной системы, которые Вы используете. Единственная личная информация о Вас, которую мы получаем, это те данные, которые Вы добровольно предоставляете при заполнении форм.
+					При заполнении форм на сайте у Вас запросят персональную информацию, такую как имя, номер телефона. Предоставление такой информации в ответ на запрос осуществляется Вами исключительно добровольно. 
+					Предоставленная Вами информация используется чтобы оказать те услуги, которые Вы сами запрашиваете.</p>
+				</div>	
+			</div>
+		</footer>
+		<div id="popup" class="popup">
+			<div class="prod-form">
+				<div class="popup-form-title">Оставьте заявку на консультацию</div>
+				<form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
+					<fieldset>
+						<input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
+						<input name="phone" type="text" class="input" placeholder="Ваш телефон или email">
+						<input type="hidden" name="theme" value="Заявка на консультацию">
+						<button class="submit">Оставить заявку</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+  {{ BOTTOM_JS|safe|default:'' }}
+</body>
+</html>
