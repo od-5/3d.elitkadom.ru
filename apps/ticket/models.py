@@ -14,7 +14,7 @@ class Ticket(Common):
         app_label = 'ticket'
 
     def __unicode__(self):
-        return self.name
+        return self.house
 
     TICKET_STATUS_CHOICE = (
         (0, u'В обработке'),
