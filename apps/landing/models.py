@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.conf import settings
 
-from core.base_model import CommonPage
+from core.base_model import CommonPage, SortableModel
 from core.geotagging import geocode
 
 __author__ = 'alexy'
@@ -49,7 +49,7 @@ class City(CommonPage):
         super(City, self).save()
 
 
-class Video(models.Model):
+class Video(SortableModel):
     title = models.CharField(verbose_name=u'Название', max_length=256)
     code = models.TextField(verbose_name=u'HTML код видео')
     main = models.BooleanField(verbose_name=u'Главное видео', default=False)
@@ -58,11 +58,68 @@ class Video(models.Model):
         verbose_name = u'Видео'
         verbose_name_plural = u'Видео'
         app_label = 'landing'
+        ordering = ('order', )
 
     def __unicode__(self):
         return self.title
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        Video.objects.filter(main=True).update(main=False)
+        if Video.objects.filter(main=True).count() > 1:
+            Video.objects.filter(main=True).update(main=False)
         super(Video, self).save()
+
+
+class Why(SortableModel):
+    text = models.TextField(verbose_name=u'Текст')
+
+    class Meta:
+        verbose_name = u'Почему заказывают рекламу у нас'
+        verbose_name_plural = u'Поччему заказывают рекламу у нас'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.text
+
+
+class Service(SortableModel):
+    title = models.CharField(verbose_name=u'Название', max_length=256)
+    text = models.TextField(verbose_name=u'Текст')
+    price = models.CharField(verbose_name=u'Стоимость', max_length=500)
+    cover = models.ImageField(verbose_name=u'Обложка', upload_to='service/')
+
+    class Meta:
+        verbose_name = u'Услуга'
+        verbose_name_plural = u'Наши услуги'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.title
+
+    def pic(self):
+        return '<img src="%s" width="170"/>' % self.cover.url
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True
+
+
+class Review(SortableModel):
+    name = models.CharField(verbose_name=u'ФИО', max_length=256)
+    desc = models.CharField(verbose_name=u'подпись', max_length=256)
+    text = models.TextField(verbose_name=u'Текст')
+    avatar = models.ImageField(verbose_name=u'Обложка', upload_to='review/')
+
+    class Meta:
+        verbose_name = u'Отзыв'
+        verbose_name_plural = u'Отзывы'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.name
+
+    def pic(self):
+        return '<img src="%s" width="170"/>' % self.avatar.url
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True

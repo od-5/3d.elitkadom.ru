@@ -8,3 +8,4 @@ django-annoying==0.8.3
 django-ckeditor==4.5.1
 django-cleanup==0.4.2
 django-geoip==0.5.2.1
+pillow

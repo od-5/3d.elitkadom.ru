@@ -1,6 +1,8 @@
 # coding=utf-8
 from django.contrib import admin
-from .models import Setup, City, Video
+from suit.admin import SortableModelAdmin
+
+from .models import Setup, City, Video, Why, Service, Review
 
 __author__ = 'alexy'
 
@@ -36,10 +38,29 @@ class CityAdmin(admin.ModelAdmin):
     )
 
 
-class VideoAdmin(admin.ModelAdmin):
+class MySortableModelAdmin(SortableModelAdmin):
+    sortable = 'order'
+
+
+class VideoAdmin(MySortableModelAdmin):
     list_display = ('title', 'main')
+
+
+class WhyAdmin(MySortableModelAdmin):
+    list_display = ('text', )
+
+
+class ServiceAdmin(MySortableModelAdmin):
+    list_display = ('title', 'price', 'pic')
+
+
+class ReviewAdmin(MySortableModelAdmin):
+    list_display = ('name', 'desc', 'pic')
 
 
 admin.site.register(Setup, SetupAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Video, VideoAdmin)
+admin.site.register(Why, WhyAdmin)
+admin.site.register(Service, ServiceAdmin)
+admin.site.register(Review, ReviewAdmin)

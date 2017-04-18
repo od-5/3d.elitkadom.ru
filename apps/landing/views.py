@@ -1,13 +1,9 @@
 # coding=utf-8
-from annoying.decorators import ajax_request
 from annoying.functions import get_object_or_None
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 from django.views.generic.base import ContextMixin
 
-from .models import Setup, City, Video
+from .models import Setup, City, Video, Why, Service, Review
 
 __author__ = 'alexy'
 
@@ -23,6 +19,9 @@ class LandingMixin(ContextMixin):
         kwargs = super(LandingMixin, self).get_context_data(**kwargs)
         kwargs.update({
             'city_list': City.objects.all(),
+            'review_list': Review.objects.all(),
+            'service_list': Service.objects.all(),
+            'why_list': Why.objects.all(),
             'video_list': Video.objects.all(),
             'main_video': get_object_or_None(Video, main=True)
         })
@@ -36,14 +35,23 @@ class SetupMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         kwargs = super(SetupMixin, self).get_context_data(**kwargs)
         setup = Setup.objects.first()
+        contact = phone = meta_title = meta_key = meta_desc = top_js = bottom_js = ''
+        if setup:
+            contact = setup.contact
+            phone = setup.phone
+            meta_title = setup.meta_title
+            meta_key = setup.meta_key
+            meta_desc = setup.meta_desc
+            top_js = setup.top_js
+            bottom_js = setup.bottom_js
         kwargs.update({
-            'CONTACT': setup.contact,
-            'PHONE': setup.phone,
-            'TITLE': setup.meta_title,
-            'KEYS': setup.meta_key,
-            'DESC': setup.meta_desc,
-            'TOP_JS': setup.top_js,
-            'BOTTOM_JS': setup.bottom_js
+            'CONTACT': contact,
+            'PHONE': phone,
+            'TITLE': meta_title,
+            'KEYS': meta_key,
+            'DESC': meta_desc,
+            'TOP_JS': top_js,
+            'BOTTOM_JS': bottom_js
         })
         return kwargs
 
