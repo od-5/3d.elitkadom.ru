@@ -1,4 +1,7 @@
 # coding=utf-8
+from imagekit.models import ImageSpecField
+from pilkit.processors import SmartResize
+
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.conf import settings
@@ -122,5 +125,67 @@ class Review(SortableModel):
 
     def pic(self):
         return '<img src="%s" width="170"/>' % self.avatar.url
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True
+
+
+class Thanks(SortableModel):
+    name = models.CharField(verbose_name=u'Название или ФИО', max_length=256)
+    desc = models.CharField(verbose_name=u'Подпись', max_length=256, blank=True, null=True)
+    image = models.ImageField(verbose_name=u'Благодарственно письмо', upload_to='thanks/')
+    image_resize = ImageSpecField(
+        [SmartResize(*settings.THANKS_SIZE)], source='image', format='JPEG', options={'quality': 94}
+    )
+
+    class Meta:
+        verbose_name = u'Благодарственное письмо'
+        verbose_name_plural = u'Благодарственные письма'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.name
+
+    def pic(self):
+        return '<img src="%s" width="120"/>' % self.image_resize.url
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True
+
+
+class Gallery(SortableModel):
+    image = models.ImageField(verbose_name=u'Изображение', upload_to='gallery/')
+    image_resize = ImageSpecField(
+        [SmartResize(*settings.GALLERY_SIZE)], source='image', format='JPEG', options={'quality': 94}
+    )
+
+    class Meta:
+        verbose_name = u'Галлерея'
+        verbose_name_plural = u'Галлерея'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return u'Изображение #%s' % self.id
+
+    def pic(self):
+        return '<img src="%s" width="120"/>' % self.image_resize.url
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True
+
+
+class Client(SortableModel):
+    image = models.ImageField(verbose_name=u'Логотип', upload_to='cilent/')
+
+    class Meta:
+        verbose_name = u'Клиент'
+        verbose_name_plural = u'Клиенты'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return u'Изображение #%s' % self.id
+
+    def pic(self):
+        return '<img src="%s" width="120"/>' % self.image.url
     pic.short_description = u"Миниатюра"
     pic.allow_tags = True

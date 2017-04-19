@@ -373,16 +373,19 @@
       <div class="holder">
         <h2>Наша Галерея</h2>
         <div class="gallery-block">
-          <a href="{% static 'landing/images/media/gallery/1b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/1.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/2b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/2.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/3b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/3.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/4b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/4.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/5b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/5.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/6b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/6.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/7b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/7.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/8b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/8.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/9b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/9.jpg' %}" alt=""></a>
-          <a href="{% static 'landing/images/media/gallery/10b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/10.jpg' %}" alt=""></a>
+        {% for item in gallery_list %}
+          <a href="{{ item.image.url }}" class="fancybox" data-fancybox-group="gal"><img src="{{ item.image_resize.url }}" alt=""></a>
+        {% endfor %}
+{#          <a href="{% static 'landing/images/media/gallery/1b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/1.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/2b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/2.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/3b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/3.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/4b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/4.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/5b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/5.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/6b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/6.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/7b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/7.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/8b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/8.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/9b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/9.jpg' %}" alt=""></a>#}
+{#          <a href="{% static 'landing/images/media/gallery/10b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/10.jpg' %}" alt=""></a>#}
         </div>
       </div>
     </section>
@@ -390,26 +393,29 @@
       <div class="holder">
         <h2>Наши клиенты</h2>
         <div class="client-block">
-          <div class="client-item"><img src="{% static 'landing/images/media/client/1.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/2.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/3.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/4.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/5.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/6.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/7.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/8.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/9.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/10.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/11.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/12.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/13.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/14.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/15.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/16.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/17.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/18.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/19.png' %}" alt=""></div>
-          <div class="client-item"><img src="{% static 'landing/images/media/client/20.png' %}" alt=""></div>
+        {% for client in client_list %}
+          <div class="client-item"><img src="{{ client.image.url }}" alt=""></div>
+        {% endfor %}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/1.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/2.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/3.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/4.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/5.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/6.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/7.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/8.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/9.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/10.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/11.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/12.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/13.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/14.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/15.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/16.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/17.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/18.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/19.png' %}" alt=""></div>#}
+{#          <div class="client-item"><img src="{% static 'landing/images/media/client/20.png' %}" alt=""></div>#}
         </div>
         <div class="button-holder">
           <a href="#popup" class="button fancybox button-data" data-button="Оставить заявку" data-title="Оставьте заявку на рекламу">Оставить заявку на рекламу</a>
@@ -432,41 +438,15 @@
         {% endfor %}
         </div>
         <div class="cert-slider">
+        {% for thanks in thanks_list %}
           <div class="cert-block">
             <div class="cert-img">
-              <a href="{% static 'landing/images/media/review/1b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/1.jpg' %}" alt=""></a>
+              <a href="{{ thanks.image.url }}" class="fancybox"><img src="{{ thanks.image_resize.url }}" alt=""></a>
             </div>
-            <div class="review-author">Ротари клуб Волгограда</div>
-            <div class="review-status"></div>
+            <div class="review-author">{{ thanks.name }}</div>
+            <div class="review-status">{{ thanks.desc|default:'' }}</div>
           </div>
-          <div class="cert-block">
-            <div class="cert-img">
-              <a href="{% static 'landing/images/media/review/2b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/2.jpg' %}" alt=""></a>
-            </div>
-            <div class="review-author">Р. С. Фомин</div>
-            <div class="review-status">Генеральный директор ООО «Ярмарка Волгоград»</div>
-          </div>
-          <div class="cert-block">
-            <div class="cert-img">
-              <a href="{% static 'landing/images/media/review/3b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/3.jpg' %}" alt=""></a>
-            </div>
-            <div class="review-author">Тарасова Татьяна</div>
-            <div class="review-status">Руководитель компании «Линия успеха»</div>
-          </div>
-          <div class="cert-block">
-            <div class="cert-img">
-              <a href="{% static 'landing/images/media/review/4b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/4.jpg' %}" alt=""></a>
-            </div>
-            <div class="review-author">Зузанов Д. Н.</div>
-            <div class="review-status">Директор филиала ООО «ПЭК Поволжье»</div>
-          </div>
-          <div class="cert-block">
-            <div class="cert-img">
-              <a href="{% static 'landing/images/media/review/5b.jpg' %}" class="fancybox"><img src="{% static 'landing/images/media/review/5.jpg' %}" alt=""></a>
-            </div>
-            <div class="review-author">Самойлова Жанна</div>
-            <div class="review-status">Руководитель отдела маркетинга ООО «МАН»</div>
-          </div>
+        {% endfor %}
         </div>
       </div>
     </section>

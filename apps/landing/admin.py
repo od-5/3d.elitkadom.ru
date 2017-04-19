@@ -2,7 +2,7 @@
 from django.contrib import admin
 from suit.admin import SortableModelAdmin
 
-from .models import Setup, City, Video, Why, Service, Review
+from .models import Setup, City, Video, Why, Service, Review, Thanks, Gallery, Client
 
 __author__ = 'alexy'
 
@@ -58,9 +58,24 @@ class ReviewAdmin(MySortableModelAdmin):
     list_display = ('name', 'desc', 'pic')
 
 
+class ThanksAdmin(MySortableModelAdmin):
+    list_display = ('name', 'desc', 'pic')
+
+
+class GalleryAdmin(MySortableModelAdmin):
+    list_display = ('__unicode__', 'pic')
+
+
+class ClientAdmin(MySortableModelAdmin):
+    list_display = ('__unicode__', 'pic')
+
+
 admin.site.register(Setup, SetupAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Video, VideoAdmin)
 admin.site.register(Why, WhyAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Thanks, ThanksAdmin)
+admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(Client, ClientAdmin)

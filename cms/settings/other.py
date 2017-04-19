@@ -55,3 +55,7 @@ CKEDITOR_CONFIGS = {
         ]
     },
 }
+
+
+THANKS_SIZE = [133, 183]
+GALLERY_SIZE = [187, 152]

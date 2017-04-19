@@ -9,3 +9,4 @@ django-ckeditor==4.5.1
 django-cleanup==0.4.2
 django-geoip==0.5.2.1
 pillow
+django-imagekit
