@@ -34,24 +34,8 @@ class SetupMixin(ContextMixin):
     """
     def get_context_data(self, **kwargs):
         kwargs = super(SetupMixin, self).get_context_data(**kwargs)
-        setup = Setup.objects.first()
-        contact = phone = meta_title = meta_key = meta_desc = top_js = bottom_js = ''
-        if setup:
-            contact = setup.contact
-            phone = setup.phone
-            meta_title = setup.meta_title
-            meta_key = setup.meta_key
-            meta_desc = setup.meta_desc
-            top_js = setup.top_js
-            bottom_js = setup.bottom_js
         kwargs.update({
-            'CONTACT': contact,
-            'PHONE': phone,
-            'TITLE': meta_title,
-            'KEYS': meta_key,
-            'DESC': meta_desc,
-            'TOP_JS': top_js,
-            'BOTTOM_JS': bottom_js
+            'SETUP': Setup.objects.first(),
         })
         return kwargs
 
@@ -63,17 +47,3 @@ class LandingView(TemplateView, LandingMixin, SetupMixin):
 class CityDetailView(DetailView, LandingMixin, SetupMixin):
     model = City
     template_name = 'landing/index.html'
-
-    def get_context_data(self, **kwargs):
-        kwargs = super(CityDetailView, self).get_context_data(**kwargs)
-        if self.object.phone:
-            kwargs['PHONE'] = self.object.phone
-        if self.object.meta_title:
-            kwargs['TITLE'] = self.object.meta_title
-        if self.object.meta_key:
-            kwargs['KEYS'] = self.object.meta_key
-        if self.object.meta_desc:
-            kwargs['DESC'] = self.object.meta_desc
-        if self.object.contact:
-            kwargs['CONTACT'] = self.object.contact
-        return kwargs

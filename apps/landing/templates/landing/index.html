@@ -4,16 +4,16 @@
 <head>
   <meta charset="utf-8">
 {% block meta_key %}
-  <meta name="keywords" content="{{ SETUP.meta_key|default:'' }}">
+  <meta name="keywords" content="{% if object.meta_key %}{{ object.meta_key|default:'' }}{% else %}{{ SETUP.meta_key|default:'' }}{% endif %}">
 {% endblock %}
 {% block meta_desc %}
-  <meta name="description" content="{{ SETUP.meta_desc|default:'' }}">
+  <meta name="description" content="{% if object.meta_desc %}{{ object.meta_desc|default:'' }}{% else %}{{ SETUP.meta_desc|default:'' }}{% endif %}">
 {% endblock %}
   <meta name="format-detection" content="telephone=no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 {#	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
 {% block title %}
-  <title>{{ SETUP.title|default:'3d.elitkadom.ru' }}</title>
+  <title>{% if object.title %}{{ object.title }}{% else %}{{ SETUP.title|default:'3d.elitkadom.ru' }}{% endif %}</title>
 {% endblock %}
   <link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/all.css' %}" />
   <link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/slick.css' %}" />
@@ -69,7 +69,7 @@
             <li><a href="#contacts" class="scroll">Контакты</a></li>
           </ul>
         </div>
-        <a href="tel:{{ SETUP.phone|default:'8 800 775-18-45' }}" class="header-phone">{{ SETUP.phone|default:'8 800 775-18-45' }}</a>
+        <a href="tel:{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}" class="header-phone">{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}</a>
       </div>
     </div>
     <header class="header">
@@ -92,7 +92,7 @@
             <a href="#city-popup" class="city-link fancybox"><span>Выбрать <br>город</span></a>
           </div>
           <a href="" class="header-button">Войти</a>
-          <a href="tel:{{ SETUP.phone|default:'8 800 775-18-45' }}" class="header-phone">{{ SETUP.phone|default:'8 800 775-18-45' }}</a>
+          <a href="tel:{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}" class="header-phone">{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}</a>
         </div>
         <div class="header-main">
           <div class="header-title">
@@ -221,7 +221,7 @@
         <a href="#popup" class="fancybox button-data" data-button="Оставить заявку" data-title="Оставьте заявку на консультацию">оставьте заявку</a>
         на консультацию и принимайте участие в акции</div>
         <div class="action-title">Дизайн-макет вашей рекламы <span>в подарок к заказу!</span></div>
-        <div class="action-phone">Звоните по номеру <span>{{ SETUP.phone|default:'8 800 775-18-45' }}</span></div>
+        <div class="action-phone">Звоните по номеру <span>{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}</span></div>
         <div class="action-note">Изображения и информация<br> предоставляется клиентом</div>
       </div>
     </section>
