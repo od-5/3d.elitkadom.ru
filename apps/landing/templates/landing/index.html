@@ -120,7 +120,7 @@
           <div class="header-main-link"><a href="#gallery" class="scroll">Смотреть примеры работ</a></div>
           <div class="tablet">
             <div class="tablet-hidden">
-              {{ main_video|safe|default:'' }}
+              {{ main_video.code|safe|default:'' }}
             </div>
             <a href="" class="header-play"><img src="{% static 'landing/images/play.png' %}" alt=""></a>
           </div>
