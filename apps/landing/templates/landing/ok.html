@@ -1,4 +1,13 @@
 {% extends 'landing/index.html' %}
+{% block meta_key %}
+  <meta name="keywords" content="Ваша заявка принята. Ждите звонка нашего менеджера!">
+{% endblock %}
+{% block meta_desc %}
+  <meta name="description" content="Ваша заявка принята. Ждите звонка нашего менеджера!">
+{% endblock %}
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{#	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
 {% block extra_js %}
 	<script type="text/javascript">
 		setTimeout('location.replace("{% url 'landing:index' %}")', 7000);

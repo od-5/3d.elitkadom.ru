@@ -65,8 +65,9 @@ class Video(SortableModel):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        if Video.objects.filter(main=True).count() > 1:
+        if self.main:
             Video.objects.filter(main=True).update(main=False)
+            self.main = True
         super(Video, self).save()
 
 
