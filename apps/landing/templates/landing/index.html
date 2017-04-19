@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 {#	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
 {% block title %}
-  <title>{% if object.title %}{{ object.title }}{% else %}{{ SETUP.title|default:'3d.elitkadom.ru' }}{% endif %}</title>
+  <title>{% if object.meta_title %}{{ object.meta_title }}{% else %}{{ SETUP.meta_title|default:'3d.elitkadom.ru' }}{% endif %}</title>
 {% endblock %}
   <link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/all.css' %}" />
   <link media="all" rel="stylesheet" type="text/css" href="{% static 'landing/css/slick.css' %}" />
