@@ -174,7 +174,8 @@ class Gallery(SortableModel):
 
 
 class Client(SortableModel):
-    image = models.ImageField(verbose_name=u'Логотип', upload_to='cilent/')
+    image = models.ImageField(verbose_name=u'Логотип', upload_to='client/')
+    maket = models.ImageField(verbose_name=u'макет', upload_to='client/', blank=True, null=True)
 
     class Meta:
         verbose_name = u'Клиент'
@@ -185,7 +186,66 @@ class Client(SortableModel):
     def __unicode__(self):
         return u'Изображение #%s' % self.id
 
+    def get_maket_url(self):
+        if self.maket:
+            return self.maket.url
+        else:
+            return self.image.url
+
     def pic(self):
         return '<img src="%s" width="120"/>' % self.image.url
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True
+
+
+class Cost(SortableModel):
+    title = models.CharField(verbose_name=u'Наименование', max_length=256)
+
+    class Meta:
+        verbose_name = u'Стоимость'
+        verbose_name_plural = u'Стоимость'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.title
+
+
+class CostItem(SortableModel):
+    cost = models.ForeignKey(to=Cost, verbose_name=u'Стоимость')
+    title = models.CharField(verbose_name=u'Наименование', max_length=256)
+    price = models.CharField(verbose_name=u'Стоимость', max_length=256)
+
+    class Meta:
+        verbose_name = u'Пункт'
+        verbose_name_plural = u'Пукнты'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.title
+
+
+class CostImage(SortableModel):
+    cost = models.ForeignKey(to=Cost, verbose_name=u'Стоимость')
+    image = models.ImageField(verbose_name=u'Изображение', upload_to='cost/')
+    image_resize = ImageSpecField(
+        [SmartResize(*settings.COST_IMAGE_SIZE)], source='image', format='JPEG', options={'quality': 94}
+    )
+
+    class Meta:
+        verbose_name = u'Изображение'
+        verbose_name_plural = u'Изображения'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return u'Изображение #%s' % self.id
+
+    def pic(self):
+        if self.image:
+            return '<img src="%s" width="120"/>' % self.image_resize.url
+        else:
+            return '----'
     pic.short_description = u"Миниатюра"
     pic.allow_tags = True

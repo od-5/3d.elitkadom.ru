@@ -173,42 +173,6 @@
               </div>
             </div>
           {% endfor %}
-{#            <div class="serv-item">#}
-{#              <div class="serv-img"><img src="{% static 'landing/images/media/s1.jpg' %}" alt=""></div>#}
-{#              <div class="serv-content">#}
-{#                <div class="serv-name">3D Брендирование лифта</div>#}
-{#                <div class="serv-text">Оформляя красиво лифт, вы 100% привлечете к себе внимание всех жителей дома. А по статистике#}
-{#                люди тратят на благоустройство от 30 до 70% стоимости квартиры.</div>#}
-{#                <div class="serv-price">от 20 000 руб.</div>#}
-{#                <div class="serv-button">#}
-{#                  <a href="#popup" class="button fancybox button-data" data-button="Узнать подробнее" data-title="Узнать подробнее о защитном брендировании лифта">Узнать подробнее</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="serv-item">#}
-{#              <div class="serv-img"><img src="{% static 'landing/images/media/s2.jpg' %}" alt=""></div>#}
-{#              <div class="serv-content">#}
-{#                <div class="serv-name">Реклама в лифтах</div>#}
-{#                <div class="serv-text">В нашей программе подборка от старых до наиболее благоустроенных и только что сданных домов.#}
-{#                Подберем на любой вкус!</div>#}
-{#                <div class="serv-price">от 10 000 руб. <br><a href="#product" class="serv-price-min scroll">смотреть цены</a></div>#}
-{#                <div class="serv-button">#}
-{#                  <a href="#popup" class="button fancybox button-data" data-button="Узнать подробнее" data-title="Узнать подробнее о рекламе в лифтах">Узнать подробнее</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="serv-item">#}
-{#              <div class="serv-img"><img src="{% static 'landing/images/media/s3.jpg' %}" alt=""></div>#}
-{#              <div class="serv-content">#}
-{#                <div class="serv-name">Расклейка и Распространение рекламного материала</div>#}
-{#                <div class="serv-text">Использование единой программы online контроля через мобильное приложение по всем городам#}
-{#                России позволило увеличить эффективность расклейки и распространения более чем в 5 раз.</div>#}
-{#                <div class="serv-price">от 10 000 руб.</div>#}
-{#                <div class="serv-button">#}
-{#                  <a href="#popup" class="button fancybox button-data" data-button="Узнать подробнее" data-title="Узнать подробнее об адресном распространении">Узнать подробнее</a>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
           </div>
         </div>
       </div>
@@ -258,114 +222,34 @@
       <div class="holder">
         <h2>Стоимость</h2>
         <div class="product-block">
+        {% for cost in cost_list %}
           <div class="product-item">
             <div class="product-img">
               <div class="product-slider">
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/1.jpg' %}"><img src="{% static 'landing/images/media/product/1.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/2.jpg' %}"><img src="{% static 'landing/images/media/product/2.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/3.jpg' %}"><img src="{% static 'landing/images/media/product/3.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/4.jpg' %}"><img src="{% static 'landing/images/media/product/4.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/5.jpg' %}"><img src="{% static 'landing/images/media/product/5.jpg' %}"></div>
+              {% for costimage in cost.costimage_set.all %}
+                <div data-thumb="{{ costimage.image_resize.url }}"><img src="{{ costimage.image.url }}"></div>
+              {% endfor %}
               </div>
             </div>
             <div class="product-content">
-              <div class="product-name">Брендирование лифтов</div>
+              <div class="product-name">{{ cost.title }}</div>
               <ul class="product-info">
+            {% with last=forloop.last %}
+              {% for costitem in cost.costitem_set.all %}
                 <li>
-                  <div class="product-info-left">1 лифт</div>
-                  <div class="product-info-right">от 20 000 руб.</div>
+                  <div class="product-info-left" {% if last %}style="width:60%"{% endif %}>{{ costitem.title }}</div>
+                  <div class="product-info-right" {% if last %}style="width:40%"{% endif %}>{{ costitem.price }}</div>
                 </li>
-                <li>
-                  <div class="product-info-left">5 лифтов</div>
-                  <div class="product-info-right">от 95 000 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left">10 лифтов</div>
-                  <div class="product-info-right">от 180 000 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left">50 лифтов</div>
-                  <div class="product-info-right">по договоренности</div>
-                </li>
-
+              {% endfor %}
+            {% endwith %}
               </ul>
               <div class="product-button">
-                <a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение брендирования лифтов">Получить предложение</a>
+                <a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение {{ cost.title }}">Получить предложение</a>
               </div>
             </div>
           </div>
-          <div class="product-item">
-            <div class="product-img">
-              <div class="product-slider">
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/11.jpg' %}"><img src="{% static 'landing/images/media/product/11.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/14.jpg' %}"><img src="{% static 'landing/images/media/product/14.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/12.jpg' %}"><img src="{% static 'landing/images/media/product/12.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/13.jpg' %}"><img src="{% static 'landing/images/media/product/13.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/15.jpg' %}"><img src="{% static 'landing/images/media/product/15.jpg' %}"></div>
-              </div>
-            </div>
-            <div class="product-content">
-              <div class="product-name">Реклама на<br> стендах </div>
-              <ul class="product-info">
-                <li>
-                  <div class="product-info-left">А3</div>
-                  <div class="product-info-right">от 290 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left">А4</div>
-                  <div class="product-info-right">от 180 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left">А5</div>
-                  <div class="product-info-right">от 125 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left">Полоса</div>
-                  <div class="product-info-right">от 125 руб.</div>
-                </li>
+        {% endfor %}
 
-              </ul>
-              <div class="product-button">
-                <a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение рекламы на стендах">Получить предложение</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-item">
-            <div class="product-img">
-              <div class="product-slider">
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/21.jpg' %}"><img src="{% static 'landing/images/media/product/21.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/22.jpg' %}"><img src="{% static 'landing/images/media/product/22.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/23.jpg' %}"><img src="{% static 'landing/images/media/product/23.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/24.jpg' %}"><img src="{% static 'landing/images/media/product/24.jpg' %}"></div>
-                <div data-thumb="{% static 'landing/images/media/product/thumbs/25.jpg' %}"><img src="{% static 'landing/images/media/product/25.jpg' %}"></div>
-              </div>
-            </div>
-            <div class="product-content">
-              <div class="product-name">Расклейка и Распространение рекламного материала</div>
-              <ul class="product-info">
-                <li>
-                  <div class="product-info-left" style="width: 60%;">Раскидка по ящикам с онлайн фотоотчетом</div>
-                  <div class="product-info-right" style="width: 40%;">от 70 копеек.</div>
-                </li>
-                <li>
-                  <div class="product-info-left" style="width: 60%;">Расклейка на доски объявлений с GPS-отслеживанием</div>
-                  <div class="product-info-right" style="width: 40%;">от 1.50 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left" style="width: 60%;">Хенгеры, листовки на авто (под дворник, в дверь)</div>
-                  <div class="product-info-right" style="width: 40%;">от 1 руб.</div>
-                </li>
-                <li>
-                  <div class="product-info-left" style="width: 60%;">Общий бюджет</div>
-                  <div class="product-info-right" style="width: 40%;">от 10 000 руб.</div>
-                </li>
-
-              </ul>
-              <div class="product-button">
-                <a href="#popup" class="button fancybox button-data" data-button="Получить предложение" data-title="Получите предложение адресного распространения">Получить предложение</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -374,18 +258,10 @@
         <h2>Наша Галерея</h2>
         <div class="gallery-block">
         {% for item in gallery_list %}
-          <a href="{{ item.image.url }}" class="fancybox" data-fancybox-group="gal"><img src="{{ item.image_resize.url }}" alt=""></a>
+          <a href="{{ item.image.url }}" class="fancybox" data-fancybox-group="gal">
+            <img src="{{ item.image_resize.url }}" alt="">
+          </a>
         {% endfor %}
-{#          <a href="{% static 'landing/images/media/gallery/1b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/1.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/2b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/2.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/3b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/3.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/4b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/4.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/5b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/5.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/6b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/6.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/7b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/7.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/8b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/8.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/9b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/9.jpg' %}" alt=""></a>#}
-{#          <a href="{% static 'landing/images/media/gallery/10b.jpg' %}" class="fancybox" data-fancybox-group="gal"><img src="{% static 'landing/images/media/gallery/10.jpg' %}" alt=""></a>#}
         </div>
       </div>
     </section>
@@ -394,28 +270,12 @@
         <h2>Наши клиенты</h2>
         <div class="client-block">
         {% for client in client_list %}
-          <div class="client-item"><img src="{{ client.image.url }}" alt=""></div>
+          <div class="client-item">
+            <a href="{{ client.get_maket_url }}" class="fancybox" data-fancybox-group="client">
+              <img src="{{ client.image.url }}" alt="">
+            </a>
+          </div>
         {% endfor %}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/1.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/2.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/3.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/4.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/5.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/6.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/7.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/8.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/9.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/10.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/11.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/12.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/13.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/14.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/15.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/16.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/17.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/18.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/19.png' %}" alt=""></div>#}
-{#          <div class="client-item"><img src="{% static 'landing/images/media/client/20.png' %}" alt=""></div>#}
         </div>
         <div class="button-holder">
           <a href="#popup" class="button fancybox button-data" data-button="Оставить заявку" data-title="Оставьте заявку на рекламу">Оставить заявку на рекламу</a>

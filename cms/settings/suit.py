@@ -28,7 +28,7 @@ SUIT_CONFIG = {
         {'label': u'Город', 'icon': 'icon-map-marker', 'models': ('landing.city',)},
         {'label': u'Контент', 'icon': 'icon-edit', 'models': (
             'landing.video', 'landing.why', 'landing.service', 'landing.review', 'landing.thanks', 'landing.gallery',
-            'landing.client',
+            'landing.client', 'landing.cost'
         )},
         {'label': u'Заявки', 'icon': 'icon-list-alt', 'models': ('ticket.ticket',)},
     ),

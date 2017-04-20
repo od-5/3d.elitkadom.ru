@@ -1,8 +1,8 @@
 # coding=utf-8
 from django.contrib import admin
-from suit.admin import SortableModelAdmin
+from suit.admin import SortableModelAdmin, SortableTabularInline
 
-from .models import Setup, City, Video, Why, Service, Review, Thanks, Gallery, Client
+from .models import Setup, City, Video, Why, Service, Review, Thanks, Gallery, Client, Cost, CostImage, CostItem
 
 __author__ = 'alexy'
 
@@ -42,6 +42,10 @@ class MySortableModelAdmin(SortableModelAdmin):
     sortable = 'order'
 
 
+class MySortableTabularModelAdmin(SortableTabularInline):
+    sortable = 'order'
+
+
 class VideoAdmin(MySortableModelAdmin):
     list_display = ('title', 'main')
 
@@ -70,6 +74,23 @@ class ClientAdmin(MySortableModelAdmin):
     list_display = ('__unicode__', 'pic')
 
 
+class CostItemAdmin(MySortableTabularModelAdmin):
+    model = CostItem
+    list_display = ('cost', 'title', 'price')
+    extra = 0
+
+
+class CostImageAdmin(MySortableTabularModelAdmin):
+    model = CostImage
+    fields = ('cost', 'image', 'pic')
+    readonly_fields = ('pic', )
+    extra = 0
+
+
+class CostAdmin(MySortableModelAdmin):
+    list_display = ('title', )
+    inlines = (CostItemAdmin, CostImageAdmin)
+
 admin.site.register(Setup, SetupAdmin)
 admin.site.register(City, CityAdmin)
 admin.site.register(Video, VideoAdmin)
@@ -79,3 +100,4 @@ admin.site.register(Review, ReviewAdmin)
 admin.site.register(Thanks, ThanksAdmin)
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Client, ClientAdmin)
+admin.site.register(Cost, CostAdmin)
