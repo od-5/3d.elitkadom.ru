@@ -1,10 +1,19 @@
 # coding=utf-8
 from django.contrib import admin
-from suit.admin import SortableModelAdmin, SortableTabularInline
+from suit.admin import SortableModelAdmin, SortableTabularInline, SortableStackedInline
 
-from .models import Setup, City, Video, Why, Service, Review, Thanks, Gallery, Client, Cost, CostImage, CostItem
+from .models import Setup, City, CityHouse, Video, Why, Service, Review, Thanks, Gallery, Client, Cost, CostImage, \
+    CostItem
 
 __author__ = 'alexy'
+
+
+class MySortableModelAdmin(SortableModelAdmin):
+    sortable = 'order'
+
+
+class MySortableTabularModelAdmin(SortableTabularInline):
+    sortable = 'order'
 
 
 class SetupAdmin(admin.ModelAdmin):
@@ -17,33 +26,38 @@ class SetupAdmin(admin.ModelAdmin):
             return False
 
 
+class CityHouseAdmin(MySortableTabularModelAdmin):
+    model = CityHouse
+    # fields = ('city', 'address', 'image')
+    # readonly_fields = ('pic', )
+    exclude = ['coord_x', 'coord_y']
+    suit_classes = 'suit-tab suit-tab-cities'
+    extra = 0
+
+
 class CityAdmin(admin.ModelAdmin):
     list_display = ('name', 'coord_x', 'coord_y')
     prepopulated_fields = {'slug': ('name',)}
+    inlines = (CityHouseAdmin, )
     fieldsets = (
         (u'Основные настройки', {
+            'classes': ('suit-tab', 'suit-tab-general'),
             'fields': ('name',),
         }),
         (u'Информация для сайта', {
+            'classes': ('suit-tab', 'suit-tab-general'),
             'fields': ('phone', 'email', 'contact'),
         }),
         (u'Координаты', {
+            'classes': ('collapse', 'suit-tab', 'suit-tab-general'),
             'fields': ('coord_x', 'coord_y'),
-            'classes': ('collapse',),
         }),
         (u'SEO', {
+            'classes': ('suit-tab', 'suit-tab-seo'),
             'fields': ('meta_title', 'meta_desc', 'meta_key', 'slug'),
-            'classes': ('collapse',),
         }),
     )
-
-
-class MySortableModelAdmin(SortableModelAdmin):
-    sortable = 'order'
-
-
-class MySortableTabularModelAdmin(SortableTabularInline):
-    sortable = 'order'
+    suit_form_tabs = (('general', u'Информация по городу'), ('seo', u'СЕО'), ('cities', u'Адреса'))
 
 
 class VideoAdmin(MySortableModelAdmin):

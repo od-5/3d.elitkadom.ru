@@ -1,4 +1,6 @@
+{% load cache %}
 {% load static %}
+{% cache 1800 head object %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -31,8 +33,10 @@
   {% block extra_js %}
   {% endblock %}
 </head>
+{% endcache %}
 <body>
 {% block content %}
+  {% cache 1800 cityselect object %}
   <div id="city-popup" class="city-popup">
     <div class="city-top">
       <div class="city-title-mob">Выберите Ваш город:</div>
@@ -56,6 +60,7 @@
       </div>
     </div>
   </div>
+  {% endcache %}
   <div id="wrapper">
     <div class="header-fixed">
       <div class="holder">
@@ -72,6 +77,7 @@
         <a href="tel:{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}" class="header-phone">{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}</a>
       </div>
     </div>
+  {% cache 1800 header object %}
     <header class="header">
       <div class="holder">
         <div class="header-top">
@@ -91,7 +97,7 @@
           <div class="header-city-link">
             <a href="#city-popup" class="city-link fancybox"><span>Выбрать <br>город</span></a>
           </div>
-          <a href="" class="header-button">Войти</a>
+          <a href="/admin/" class="header-button">Войти</a>
           <a href="tel:{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}" class="header-phone">{% if object.phone %}{{ object.phone }}{% else %}{{ SETUP.phone|default:'8 800 775-18-45' }}{% endif %}</a>
         </div>
         <div class="header-main">
@@ -127,6 +133,8 @@
         </div>
       </div>
     </header>
+  {% endcache %}
+  {% cache 1800 why %}
     <section class="info" id="info">
       <div class="holder">
         <div class="info-title">
@@ -155,6 +163,8 @@
         </div>
       </div>
     </section>
+  {% endcache %}
+  {% cache 1800 service %}
     <section class="servises" id="servises">
       <div class="holder">
         <h2>Наши услуги</h2>
@@ -177,6 +187,7 @@
         </div>
       </div>
     </section>
+  {% endcache %}
     <section class="action" id="action">
       <div class="action-gift"></div>
       <div class="action-printer"></div>
@@ -189,6 +200,7 @@
         <div class="action-note">Изображения и информация<br> предоставляется клиентом</div>
       </div>
     </section>
+  {% cache 1800 mapblock object %}
     <section class="house" id="house">
       <div class="house-top">
         <div class="holder">
@@ -197,9 +209,10 @@
         <div class="house-hand"></div>
       </div>
       <div class="house-map">
-        <a href="{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker1 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker1.png' %}" alt=""></a>
-        <a href="{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker2 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker2.png' %}" alt=""></a>
-        <a href="{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker3 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker3.png' %}" alt=""></a>
+        <div id="photoMap" data-url="{% url 'landing:city-map' %}" data-city="{{ object.name|default:'Волгоград' }}" data-city-id="{{ object.id|default:'' }}"></div>
+{#        <a href="http://localhost:8000{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker1 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker1.png' %}" alt=""></a>#}
+{#        <a href="http://localhost:8000{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker2 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker2.png' %}" alt=""></a>#}
+{#        <a href="http://localhost:8000{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker3 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker3.png' %}" alt=""></a>#}
       </div>
       <div class="house-bottom">
         <div class="holder">
@@ -218,6 +231,8 @@
         </div>
       </div>
     </section>
+  {% endcache %}
+  {% cache 1800 cost %}
     <section class="product" id="product">
       <div class="holder">
         <h2>Стоимость</h2>
@@ -253,6 +268,8 @@
         </div>
       </div>
     </section>
+  {% endcache %}
+  {% cache 1800 gallery %}
     <section class="gallery" id="gallery">
       <div class="holder">
         <h2>Наша Галерея</h2>
@@ -265,6 +282,8 @@
         </div>
       </div>
     </section>
+  {% endcache %}
+  {% cache 1800 client %}
     <section class="client" id="client">
       <div class="holder">
         <h2>Наши клиенты</h2>
@@ -282,6 +301,8 @@
         </div>
       </div>
     </section>
+  {% endcache %}
+  {% cache 1800 review %}
     <section class="review">
       <div class="holder">
         <h2 class="title">Отзывы </h2>
@@ -310,6 +331,7 @@
         </div>
       </div>
     </section>
+  {% endcache %}
     <section class="coop" id="coop">
       <div class="holder">
         <h2>Приглашаем к<br> сотрудничеству</h2>
@@ -368,6 +390,7 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYwgiF49X4el9HEX86YLocvHahqznvPzw&callback=initMap" async defer></script>
       </div>
     </section>
+  {% cache 1800 footer %}
     <footer class="footer">
       <div class="holder">
         <div class="footer-copy">
@@ -388,6 +411,7 @@
         </div>
       </div>
     </footer>
+  {% endcache %}
     <div id="popup" class="popup">
       <div class="prod-form">
         <div class="popup-form-title">Оставьте заявку на консультацию</div>
@@ -404,5 +428,9 @@
   </div>
 {% endblock %}
 {{ SETUP.bottom_js|safe|default:'' }}
+{% cache 1800 mapsript object %}
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script src="{% static 'landing/js/photo-map.js' %}"></script>
+{% endcache %}
 </body>
 </html>

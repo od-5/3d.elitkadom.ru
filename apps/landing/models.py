@@ -52,6 +52,40 @@ class City(CommonPage):
         super(City, self).save()
 
 
+class CityHouse(SortableModel):
+    city = models.ForeignKey(to=City, verbose_name=u'Город')
+    address = models.CharField(verbose_name=u'Адрес', max_length=256)
+    coord_x = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, verbose_name=u'Широта')
+    coord_y = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, verbose_name=u'Долгота')
+    image = models.ImageField(verbose_name=u'Обложка', upload_to='cityhouse/')
+    image_resize = ImageSpecField(
+        [SmartResize(*settings.HOUSE_SIZE)], source='image', format='JPEG', options={'quality': 94}
+    )
+
+    class Meta:
+        verbose_name = u'Адрес'
+        verbose_name_plural = u'Адреса'
+        app_label = 'landing'
+        ordering = ('order', )
+
+    def __unicode__(self):
+        return self.address
+
+    def pic(self):
+        return '<img src="%s" width="120"/>' % self.image_resize.url
+
+    pic.short_description = u"Миниатюра"
+    pic.allow_tags = True
+
+    def save(self, *args, **kwargs):
+        address = u'город %s %s' % (self.city.name, self.address)
+        api_key = settings.YANDEX_MAPS_API_KEY
+        pos = geocode(api_key, address)
+        self.coord_x = float(pos[0])
+        self.coord_y = float(pos[1])
+        super(CityHouse, self).save()
+
+
 class Video(SortableModel):
     title = models.CharField(verbose_name=u'Название', max_length=256)
     code = models.TextField(verbose_name=u'HTML код видео')
