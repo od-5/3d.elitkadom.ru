@@ -603,7 +603,7 @@ label.error {
 .house-map {
 	position: relative;
 	height: 549px;
-	background: url(../images/media/map.jpg) 50% 0 no-repeat;
+	/*background: url(../images/media/map.jpg) 50% 0 no-repeat;*/
 }
 .house-marker {
 	position: absolute;
