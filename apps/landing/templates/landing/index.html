@@ -200,7 +200,6 @@
         <div class="action-note">Изображения и информация<br> предоставляется клиентом</div>
       </div>
     </section>
-  {% cache 1800 mapblock object %}
     <section class="house" id="house">
       <div class="house-top">
         <div class="holder">
@@ -210,9 +209,6 @@
       </div>
       <div class="house-map">
         <div id="photoMap" data-url="{% url 'landing:city-map' %}" data-city="{{ object.name|default:'Волгоград' }}" data-city-id="{{ object.id|default:'' }}"></div>
-{#        <a href="http://localhost:8000{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker1 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker1.png' %}" alt=""></a>#}
-{#        <a href="http://localhost:8000{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker2 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker2.png' %}" alt=""></a>#}
-{#        <a href="http://localhost:8000{% static 'landing/images/media/product/1.jpg' %}" class="house-marker marker3 fancybox" data-fancybox-group="photo1"><img src="{% static 'landing/images/media/marker3.png' %}" alt=""></a>#}
       </div>
       <div class="house-bottom">
         <div class="holder">
@@ -231,7 +227,6 @@
         </div>
       </div>
     </section>
-  {% endcache %}
   {% cache 1800 cost %}
     <section class="product" id="product">
       <div class="holder">
@@ -428,9 +423,9 @@
   </div>
 {% endblock %}
 {{ SETUP.bottom_js|safe|default:'' }}
-{% cache 1800 mapsript object %}
+{% cache 1800 mapsript %}
 <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script src="{% static 'landing/js/photo-map.js' %}"></script>
 {% endcache %}
+<script src="{% static 'landing/js/photo-map.js' %}"></script>
 </body>
 </html>
