@@ -21,7 +21,6 @@ ymaps.ready(function () {
       });
       $.ajax({
         type: "POST",
-        async: false,
         url: url,
         data: {
           city_id: city_id

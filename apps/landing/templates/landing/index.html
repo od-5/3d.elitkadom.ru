@@ -382,7 +382,9 @@
           }
 
         </script>
+      {% cache 1800 googlemap %}
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYwgiF49X4el9HEX86YLocvHahqznvPzw&callback=initMap" async defer></script>
+      {% endcache %}
       </div>
     </section>
   {% cache 1800 footer %}
