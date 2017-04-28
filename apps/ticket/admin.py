@@ -14,21 +14,22 @@ from .models import Ticket
 
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('house', 'phone', 'theme', 'created', 'status')
+    list_display = ('house', 'phone', 'theme', 'city', 'created', 'status')
     list_filter = ['city', 'created', 'status']
-    search_fields = ['phone',]
+    search_fields = ['phone', ]
     date_hierarchy = 'created'
     fields = ('house', 'phone', 'theme', 'status', 'city')
 
-    # def get_queryset(self, request):
-    #     user = request.user
-    #     if user.is_superuser:
-    #         qs = Ticket.objects.filter(sale=False)
-    #     else:
-    #         qs = Ticket.objects.filter(manager=user, sale=False)
-    #     return qs
+    def get_queryset(self, request):
+        user = request.user
+        if user.is_superuser:
+            qs = Ticket.objects.all()
+        else:
+            qs = Ticket.objects.filter(city__owner=user)
+        return qs
 
-#
+
+
 # class Sale(Ticket):
 #     class Meta:
 #         proxy = True

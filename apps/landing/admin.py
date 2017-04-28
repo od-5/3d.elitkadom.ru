@@ -20,8 +20,11 @@ class SetupAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'phone')
 
     def has_add_permission(self, request):
-        if self.model.objects.count() < 1:
-            return True
+        if request.user.is_superuser:
+            if self.model.objects.count() < 1:
+                return True
+            else:
+                return False
         else:
             return False
 
@@ -35,14 +38,48 @@ class CityHouseAdmin(MySortableTabularModelAdmin):
     extra = 0
 
 
+class OwnerCityHouseAdmin(MySortableModelAdmin):
+    list_display = ('address', 'pic')
+    readonly_fields = ('pic', )
+    fieldsets = (
+        (u'Основные настройки', {
+            'fields': ('city', 'address', 'image', 'pic'),
+        }),
+        (u'Координаты', {
+            'classes': ('collapse', ),
+            'fields': ('coord_x', 'coord_y'),
+        }),
+    )
+
+    def has_add_permission(self, request):
+        if request.user.is_superuser:
+            return False
+        else:
+            return True
+
+    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
+        if not request.user.is_superuser:
+            context['adminform'].form.fields['city'].queryset = City.objects.filter(owner=request.user)
+            context['adminform'].form.fields['city'].initial = City.objects.filter(owner=request.user).first()
+        return super(OwnerCityHouseAdmin, self).render_change_form(request, context)
+
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            qs = CityHouse.objects.none()
+        else:
+            qs = CityHouse.objects.filter(city__owner=request.user)
+        return qs
+
+
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'coord_x', 'coord_y')
+    list_display = ('name', 'coord_x', 'coord_y', 'pic')
     prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ('pic', )
     inlines = (CityHouseAdmin, )
     fieldsets = (
         (u'Основные настройки', {
             'classes': ('suit-tab', 'suit-tab-general'),
-            'fields': ('name',),
+            'fields': ('name', 'owner', 'logo', 'pic'),
         }),
         (u'Информация для сайта', {
             'classes': ('suit-tab', 'suit-tab-general'),
@@ -115,3 +152,4 @@ admin.site.register(Thanks, ThanksAdmin)
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Cost, CostAdmin)
+admin.site.register(CityHouse, OwnerCityHouseAdmin)

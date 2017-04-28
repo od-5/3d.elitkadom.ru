@@ -10,7 +10,7 @@
 {#	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />#}
 {% block extra_js %}
 	<script type="text/javascript">
-		setTimeout('location.replace("{% url 'landing:index' %}")', 7000);
+		setTimeout('location.replace("{{ request.META.HTTP_REFERER }}")', 7000);
 	</script>
 {% endblock %}
 {% block content %}

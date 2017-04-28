@@ -14,7 +14,7 @@ __author__ = 'alexy'
 
 class TicketView(CreateView):
     model = Ticket
-    fields = ['house', 'phone', 'theme']
+    fields = ['house', 'phone', 'theme', 'city']
     success_url = reverse_lazy('landing:ok')
 
     def form_valid(self, form):
@@ -22,19 +22,23 @@ class TicketView(CreateView):
         house = form.cleaned_data.get('house')
         phone = form.cleaned_data.get('phone')
         theme = form.cleaned_data.get('theme')
-        try:
-            email = Setup.objects.all().first().email
-            if not email:
-                email = 'od-5@yandex.ru'
-        except:
-            email = 'od-5@yandex.ru'
-        mail_theme_msg = u'3d.elitkadom.ru - %s' % theme
-        message = u'Тема: %s\nДома или ЖК: %s\nТелефон или e-mail: %s\n' % \
-                  (theme, house, phone)
-        send_mail(
-            mail_theme_msg,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            [email, ]
-        )
+        city = form.cleaned_data.get('city' or None)
+        if city and city.email:
+            email = city.email
+        else:
+            setup = Setup.objects.all().first()
+            if setup and setup.email:
+                email = setup.email
+            else:
+                email = None
+        if email:
+            mail_theme_msg = u'3d.elitkadom.ru - %s' % theme
+            message = u'Тема: %s\nДома или ЖК: %s\nТелефон или e-mail: %s\n' % \
+                      (theme, house, phone)
+            send_mail(
+                mail_theme_msg,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [email, ]
+            )
         return super(TicketView, self).form_valid(form)

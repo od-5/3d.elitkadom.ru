@@ -213,6 +213,10 @@ label.error {
 	float: left;
 	margin: 0 154px 0 0;
 }
+.header-logo img {
+	max-width: 168px;
+	max-height: 164px;
+}
 .header-city-link {
 	float: left;
 	clear: right;

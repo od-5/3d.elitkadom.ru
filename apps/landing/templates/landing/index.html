@@ -30,24 +30,25 @@
   <!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
   <script src="{% static 'landing/js/all.js' %}"></script>
   {{ SETUP.top_js|safe|default:'' }}
+{% endcache %}
   {% block extra_js %}
   {% endblock %}
 </head>
-{% endcache %}
+
 <body>
 {% block content %}
   {% cache 1800 cityselect object %}
   <div id="city-popup" class="city-popup">
     <div class="city-top">
       <div class="city-title-mob">Выберите Ваш город:</div>
-      <div class="city-search">
-        <form action="send.php" method="post">
-          <fieldset>
-            <input name="" type="text" class="input" placeholder="Найти город...">
-            <button class="loupe"></button>
-          </fieldset>
-        </form>
-      </div>
+{#      <div class="city-search">#}
+{#        <form action="send.php" method="post">#}
+{#          <fieldset>#}
+{#            <input name="" type="text" class="input" placeholder="Найти город...">#}
+{#            <button class="loupe"></button>#}
+{#          </fieldset>#}
+{#        </form>#}
+{#      </div>#}
     </div>
     <div class="city-main">
       <div class="city-title">Выберите Ваш город:</div>
@@ -82,7 +83,11 @@
       <div class="holder">
         <div class="header-top">
           <div class="header-logo">
+          {% if object and object.logo %}
+            <img src="{{ object.logo.url }}" alt="">
+          {% else %}
             <img src="{% static 'landing/images/logo.png' %}" alt="">
+          {% endif %}
           </div>
           <div class="header-nav">
             <ul>
@@ -107,14 +112,7 @@
           <div class="header-text">Разместим рекламу на всей поверхности в лифте (сроком от 6 месяцев)<br/>
           Реклама в новостройках (до 15лет) со 100% фотоотчетом и онлайн контролем! </div>
           <div class="form-line">
-            <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
-              <fieldset>
-                <input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
-                <input name="phone" type="text" class="input" placeholder="Ваш телефон или email">
-                <input type="hidden" name="theme" value="Заявка на консультацию">
-                <button class="submit">Оставить заявку</button>
-              </fieldset>
-            </form>
+            {% include 'landing/__include/form.html' %}
           </div>
           <ul class="header-list">
             <li>50 оформленных лифтов</li>
@@ -215,14 +213,7 @@
           <div class="house-bottom-title">Не нашли нужные?</div>
           <div class="house-bottom-text">Напишите, что вас интересует и мы предложим вам варианты</div>
           <div class="form-line">
-            <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
-              <fieldset>
-                <input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
-                <input name="phone" type="text" class="input" placeholder="Ваш телефон или email">
-                <input type="hidden" name="theme" value="Заявка на консультацию">
-                <button class="submit">Оставить заявку</button>
-              </fieldset>
-            </form>
+            {% include 'landing/__include/form.html' %}
           </div>
         </div>
       </div>
@@ -412,14 +403,7 @@
     <div id="popup" class="popup">
       <div class="prod-form">
         <div class="popup-form-title">Оставьте заявку на консультацию</div>
-        <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
-          <fieldset>
-            <input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
-            <input name="phone" type="text" class="input" placeholder="Ваш телефон или email">
-            <input type="hidden" name="theme" value="Заявка на консультацию">
-            <button class="submit">Оставить заявку</button>
-          </fieldset>
-        </form>
+        {% include 'landing/__include/form.html' %}
       </div>
     </div>
   </div>

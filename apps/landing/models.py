@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.contrib.auth.models import User
 from imagekit.models import ImageSpecField
 from pilkit.processors import SmartResize
 
@@ -25,17 +26,26 @@ class Setup(CommonPage):
 
 
 class City(CommonPage):
+    owner = models.ForeignKey(to=User, verbose_name=u'Руководитель', blank=True, null=True)
     name = models.CharField(max_length=100, verbose_name=u'Название')
-    # phone = models.CharField(verbose_name=u'Телефон', max_length=256, null=True, blank=True)
-    # email = models.EmailField(verbose_name=u'E-mail для приёма заявок', max_length=256, null=True, blank=True)
     coord_x = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, verbose_name=u'Широта')
     coord_y = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, verbose_name=u'Долгота')
+    logo = models.ImageField(verbose_name=u'Логотип', upload_to='city/', blank=True, null=True,)
     slug = models.SlugField(max_length=100, verbose_name=u'URL', blank=True, null=True)
 
     class Meta:
         verbose_name = u'Город'
         verbose_name_plural = u'Города'
         app_label = 'landing'
+
+    def pic(self):
+        if self.logo:
+            return '<img src="%s" width="100"/>' % self.logo.url
+        else:
+            return '----'
+
+    pic.short_description = u"миниатюра"
+    pic.allow_tags = True
 
     def __unicode__(self):
         return self.name
