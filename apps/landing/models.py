@@ -203,8 +203,8 @@ class Gallery(SortableModel):
     )
 
     class Meta:
-        verbose_name = u'Галлерея'
-        verbose_name_plural = u'Галлерея'
+        verbose_name = u'Галерея'
+        verbose_name_plural = u'Галерея'
         app_label = 'landing'
         ordering = ('order', )
 

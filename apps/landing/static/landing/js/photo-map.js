@@ -32,7 +32,7 @@ ymaps.ready(function () {
             myMap.geoObjects.add(
               new ymaps.Placemark([item_list[i]['coord_y'], item_list[i]['coord_x']], {
               balloonContent: item_list[i]['address'],
-              balloonContentBody: '<a href="' + current_url +'#gallery" class="fancybox">Галлерея</a><br/><img src="' + item_list[i]['image'] +'" style="width:150px"/><br/><strong>' + item_list[i]['address'] +'</strong>',
+              balloonContentBody: '<a href="' + current_url +'#gallery" class="fancybox">Галерея</a><br/><img src="' + item_list[i]['image'] +'" style="width:150px"/><br/><strong>' + item_list[i]['address'] +'</strong>',
               hintContent: item_list[i]['address']
               })
             );
@@ -43,7 +43,7 @@ ymaps.ready(function () {
             myMap.geoObjects.add(
               new ymaps.Placemark([item_list[i]['coord_y'], item_list[i]['coord_x']], {
               balloonContent: item_list[i]['name'],
-              balloonContentBody: '<a href="' + current_url +'#gallery" class="fancybox">Галлерея</a><br/><strong>' + item_list[i]['name'] + '(адресов: '+ item_list[i]['count'] +')</strong>',
+              balloonContentBody: '<a href="' + current_url +'#gallery" class="fancybox">Галерея</a><br/><strong>' + item_list[i]['name'] + '(адресов: '+ item_list[i]['count'] +')</strong>',
               hintContent: item_list[i]['name']
               })
             );
