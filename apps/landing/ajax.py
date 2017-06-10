@@ -28,7 +28,8 @@ def city_map(request):
                 'name': i.name,
                 'coord_x': float(i.coord_x),
                 'coord_y': float(i.coord_y),
-                'count': i.cityhouse_set.count()
+                'count': i.cityhouse_set.count(),
+                'city_url': i.get_absolute_url()
             })
     return {
         'house_list': house_list,
