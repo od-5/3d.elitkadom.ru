@@ -15,6 +15,8 @@ TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = [
     '3d.elitkadom.ru',
     'www.3d.elitkadom.ru',
+    'www.3d-lift.ru',
+    'www.3d-lift.ru',
 ]
 
 
