@@ -1,10 +1,10 @@
 <form action="{% url 'ticket:send' %}" method="post">{% csrf_token %}
   <fieldset>
-    <input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">
+{#    <input name="house" type="text" class="input" placeholder="Какие дома и ЖК вас интересуют?">#}
     <input name="phone" type="text" class="input" placeholder="Ваш телефон">
     <input name="email" type="text" class="input" placeholder="Ваш email">
     <input type="hidden" name="theme" value="Заявка на консультацию">
     <input type="hidden" name="city" value="{{ object.id|default:'' }}">
-    <button class="submit">Оставить заявку</button>
+    <button class="submit">Узнать цену</button>
   </fieldset>
 </form>

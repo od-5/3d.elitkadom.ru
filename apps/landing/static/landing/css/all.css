@@ -356,12 +356,12 @@ label.error {
 .header-main-link a:hover {border-bottom: 0;}
 .form-line .input {
 	float: left;
-	width: 24%;
+	width: 32%;
 	margin: 0 1% 0 0;
 }
 .form-line .submit {
 	float: left;
-	width: 24%;
+	width: 32%;
 }
 .tablet {
 	position: absolute;

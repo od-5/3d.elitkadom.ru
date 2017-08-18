@@ -12,10 +12,6 @@ $(document).ready(function () {
   $('form').each(function(){
     $(this).validate({
       rules: {
-        house: {
-          required: true,
-          minlength: 3
-        },
         phone: {
           required: true,
           minlength: 3

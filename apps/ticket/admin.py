@@ -14,11 +14,11 @@ from .models import Ticket
 
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('house', 'phone', 'email', 'theme', 'city', 'created', 'status')
+    list_display = ('phone', 'email', 'theme', 'city', 'created', 'status')
     list_filter = ['city', 'created', 'status']
     search_fields = ['phone', ]
     date_hierarchy = 'created'
-    fields = ('house', 'phone', 'email', 'theme', 'status', 'city')
+    fields = ('phone', 'email', 'theme', 'status', 'city')
 
     def get_queryset(self, request):
         user = request.user

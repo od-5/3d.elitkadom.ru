@@ -24,7 +24,7 @@ class Ticket(Common):
     )
 
     city = models.ForeignKey(to=City, verbose_name=u'Город', blank=True, null=True)
-    house = models.CharField(verbose_name=u'Дома или ЖК', max_length=256)
+    # house = models.CharField(verbose_name=u'Дома или ЖК', max_length=256)
     phone = models.CharField(verbose_name=u'Телефон', max_length=256)
     email = models.EmailField(verbose_name=u'E-mail', max_length=256)
     status = models.PositiveSmallIntegerField(verbose_name=u'Статус заявки',  choices=TICKET_STATUS_CHOICE,
