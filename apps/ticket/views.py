@@ -3,6 +3,8 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView
 
 from apps.landing.models import Setup
@@ -16,6 +18,10 @@ class TicketView(CreateView):
     model = Ticket
     fields = ['phone', 'email', 'theme', 'city']
     success_url = reverse_lazy('landing:ok')
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TicketView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.status = 1
