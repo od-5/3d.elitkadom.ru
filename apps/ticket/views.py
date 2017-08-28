@@ -3,6 +3,8 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView
 
 from apps.landing.models import Setup
@@ -12,6 +14,7 @@ from .models import Ticket
 __author__ = 'alexy'
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class TicketView(CreateView):
     model = Ticket
     fields = ['phone', 'email', 'theme', 'city']
