@@ -5,6 +5,6 @@
     <input name="name" type="text" class="input" placeholder="Ваше имя">
     <input type="hidden" name="theme" value="Заявка на консультацию">
     <input type="hidden" name="city" value="{{ object.id|default:'' }}">
-    <button class="submit">Узнать цену</button>
+    <button class="submit">{{ FORM_BUTTON|default:'Узнать цену' }}</button>
   </fieldset>
 </form>
