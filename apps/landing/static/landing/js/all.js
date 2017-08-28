@@ -16,10 +16,9 @@ $(document).ready(function () {
           required: true,
           minlength: 3
         },
-        email: {
+        name: {
           required: true,
-          minlength: 5,
-          email: true
+          minlength: 3
         }
       }
     });

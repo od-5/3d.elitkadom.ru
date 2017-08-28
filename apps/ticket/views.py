@@ -16,7 +16,7 @@ __author__ = 'alexy'
 
 class TicketView(CreateView):
     model = Ticket
-    fields = ['phone', 'email', 'theme', 'city']
+    fields = ['phone', 'name', 'theme', 'city']
     success_url = reverse_lazy('landing:ok')
 
     @method_decorator(csrf_exempt)
@@ -28,7 +28,7 @@ class TicketView(CreateView):
         # house = form.cleaned_data.get('house')
         phone = form.cleaned_data.get('phone')
         theme = form.cleaned_data.get('theme')
-        mail = form.cleaned_data.get('email')
+        name = form.cleaned_data.get('name')
         city = form.cleaned_data.get('city' or None)
         if city and city.email:
             email = city.email
@@ -40,8 +40,8 @@ class TicketView(CreateView):
                 email = None
         if email:
             mail_theme_msg = u'3d.elitkadom.ru - %s' % theme
-            message = u'Тема: %s\nТелефон: %s\ne-mail: %s\n' % \
-                      (theme, phone, mail)
+            message = u'Тема: %s\nТелефон: %s\nФИО: %s\n' % \
+                      (theme, phone, name)
             send_mail(
                 mail_theme_msg,
                 message,
