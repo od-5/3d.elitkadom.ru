@@ -28,7 +28,7 @@
   <script src="{% static 'landing/js/jquery.scrollTo.js' %}"></script>
   <!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/html5.js' %}"></script><![endif]-->
   <!--[if lt IE 9]><script type="text/javascript" src="{% static 'landing/js/placeholder.js' %}"></script><![endif]-->
-  <script src="{% static 'landing/js/all.js' %}"></script>
+  <script src="{% static 'landing/js/all.js' %}?v=1"></script>
   {{ SETUP.top_js|safe|default:'' }}
 {% endcache %}
   {% block extra_js %}
