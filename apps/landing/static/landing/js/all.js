@@ -33,12 +33,12 @@ $(document).ready(function () {
     }
 
   });
-  $('.scroll').click(function(e){
-    e.preventDefault();
-    var selected = $(this).attr('href').replace('/', '');
-    $.scrollTo(selected, 1000, {offset: 50});
-    return false;
-  });
+  //$('.scroll').click(function(e){
+  //  e.preventDefault();
+  //  var selected = $(this).attr('href').replace('/', '');
+  //  $.scrollTo(selected, 1000, {offset: 50});
+  //  return false;
+  //});
 
   // video button
   $(document).on('click','.header-play',function(e){
